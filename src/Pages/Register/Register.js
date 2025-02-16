@@ -3,12 +3,12 @@ import "./Register.css";
 import { auth } from "../../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import registerImage from "../../Assects/images/register.png";
-import {Link,useNavigate}  from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { Link, useNavigate } from "react-router-dom";
+import {toast } from "react-toastify";
 
 
 export default function Register() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   // Create a state object to store all form fields
   const [FormData, SetFormData] = useState({
     firstname: "",
@@ -25,7 +25,7 @@ export default function Register() {
   }
 
   // Handle form submit and check for password confirmation
-  
+
   const handleRegister = async (e) => {
     e.preventDefault();
     if (FormData.password !== FormData.confirmpassword) {
@@ -34,13 +34,13 @@ export default function Register() {
     }
 
     try {
-      // Create user with email, password  and first name
+      // Create user with email, password 
       await createUserWithEmailAndPassword(
         auth,
         FormData.email,
         FormData.password
       );
-      alert("Account created successfully!");
+      toast("Account created successfully!");
 
       // Reset the form fields after successful registration
       SetFormData({
@@ -52,12 +52,10 @@ export default function Register() {
       });
 
       // Navigate to the login page
-       navigate("/Login"); 
-       
+      navigate("/Login",{ replace: true });
     } catch (err) {
-      // Handle errors (optional)
       // alert("Error: " + err.message);
-      toast("Error: " + err.message);
+      toast(err.message);
     }
   };
 
@@ -140,11 +138,11 @@ export default function Register() {
           <p className="signin">
             Already have an account?{" "}
             <Link to="/Login">
-            <a href="/">Sign In</a>
+              <a href="/">Sign In</a>
             </Link>
-          </p>        
+          </p>
         </form>
-        <ToastContainer />
+        
         <div>
           <img src={registerImage} alt="Register" width="600" height="500" />
         </div>

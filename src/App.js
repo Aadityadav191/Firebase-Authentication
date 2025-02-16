@@ -4,6 +4,8 @@ import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -12,9 +14,27 @@ function App() {
         <Routes>
           <Route path="/" element={<Register />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/Home" element={<Home/>}/>
+          <Route path="/Home" element={<Home />} />
         </Routes>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000} 
+          hideProgressBar={false} 
+          newestOnTop={true} 
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </Router>
+
+
+
+
+
+
+
 
       <div class="custom-shape-divider-bottom-1736607349">
         <svg
@@ -29,6 +49,16 @@ function App() {
           ></path>
         </svg>
       </div>
+
+
+
+
+
+
+
+
+
+      
     </>
   );
 }

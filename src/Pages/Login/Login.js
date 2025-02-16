@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import "./Login.css";
 import LoginIMG from "../../Assects/images/Login.png";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export default function Login() {
       );
       toast("Signed in successfully!");
       // Navigate to the Home page
-      navigate("/Home");
+      navigate("/Home",{ replace: true });
     } catch (err) {
       let errorMessage = "Something went wrong. Please try again.";
 
@@ -59,7 +59,7 @@ export default function Login() {
           <p className="form-title-login">Sign in to your account</p>
           <div className="input-container-login">
             <input
-              required=""
+              required
               type="email"
               placeholder="Enter email"
               value={logindata.email}
@@ -70,7 +70,7 @@ export default function Login() {
           </div>
           <div className="input-container-login">
             <input
-              required=""
+              required
               type="password"
               placeholder="Enter password"
               value={logindata.password}
@@ -93,7 +93,7 @@ export default function Login() {
           <img src={LoginIMG} alt="Login" width="500" height="500" />
         </div>
       </main>
-      <ToastContainer />
+      
     </>
   );
 }
